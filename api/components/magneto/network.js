@@ -11,11 +11,18 @@ router.post('/mutant', isMutant);
 * @author Snayder Acero <helacer3@yahoo.es>
 */
 function isMutant(req, res) {
-	controller.isMutant()
-		.then((lista) => {
-			response.success(req, res, lista, 200);
+	// validate Is Mutant
+	controller.isMutant(req.body)
+		.then((response) => {
+			//console.log("response: ", response);
+			if (response.isMutant) {
+				response.success(req, res, response, 200);
+			} else {
+				response.success(req, res, response, 403);				
+			} 
 		})
 		.catch((err) => {
+			console.log("err: ", err);
 			response.error(req, res, err.message, 500);
 		});
 }
