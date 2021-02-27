@@ -2,14 +2,17 @@
   "name": "proyectomutantes",
   "version": "1.0.0",
   "description": "Proyecto Magneto",
-  "main": "index.js",
+  "main": "config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "nodemon api/index.js"
   },
   "author": "Snayder Acero",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.7"
   }
 }
