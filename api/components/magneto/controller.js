@@ -18,13 +18,13 @@ module.exports = function() {
 			.then((objValidation) => {
 				objResponse = objValidation;
 				// save Magneto Log
-				plogHelper.saveLogMagneto(Json.stringify(objRequest), objValidation.isMutant)
+				plogHelper.saveLogMagneto(JSON.stringify(objRequest), objValidation.isMutant)
 					.then(() => {})
 					.catch((error) => {
 						console.log("error isMutant Log: ", error); 
 					});
 			}).catch((error) => {
-				// console.log("error isMutant: ", error);
+				console.log("error isMutant: ", error);
 		  	});
 	  	// default Return
 	  	return objResponse;
