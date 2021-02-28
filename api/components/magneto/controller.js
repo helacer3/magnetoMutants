@@ -1,34 +1,53 @@
-const MutantHelper = require("./helpers/mutantHelper");
+const MutantHelper     = require("./helpers/mutantHelper");
+const PersistlogHelper = require("./helpers/persistlogHelper");
 
 module.exports = function() {
 	
 	/**
 	* is Mutant
 	*/
-	function isMutant(objRequest) {
-		let objResponse = {'isMutant': false, 'result': 'no Es Mutante' };
+	async function isMutant(objRequest) {
+		// set Default Object Response
+		let objResponse = {'isMutant': false, 'result': 'Error en la validación' };
 		// instance Mutant Helper
 		let hlpMutant   = new MutantHelper();
+		// instance Persist Log Helper
+		let plogHelper  = new PersistlogHelper();
 		// verify Is Mutant
-		if (hlpMutant.verifyIsMutant(objRequest)) {
-			objResponse.isMutant = true;
-			objResponse.result = 'es Mutante';
-		}
-		// default Return
-		return objResponse;
+		await hlpMutant.verifyIsMutant(objRequest)
+			.then((objValidation) => {
+				objResponse = objValidation;
+				// save Magneto Log
+				plogHelper.saveLogMagneto(Json.stringify(objRequest), objValidation.isMutant)
+					.then(() => {})
+					.catch((error) => {
+						console.log("error isMutant Log: ", error); 
+					});
+			}).catch((error) => {
+				// console.log("error isMutant: ", error);
+		  	});
+	  	// default Return
+	  	return objResponse;
 	}
 
 	/**
 	* list Stats
 	*/
-	function listStats() {
-		let objResponse = { "count_mutant_dna":40, "count_human_dna":100, "ratio":0.4 }
-		// instance Mutant Helper
-		let hlpMutant   = new MutantHelper();
-		
-		objResponse.count_mutant_dna = 1;
-		objResponse.count_human_dna  = 1;
-		objResponse.ratio = 0;
+	async function listStats() {
+		// default Object
+		let objResponse = { "count_mutant_dna":0, "count_human_dna":0, "ratio":0 }
+		// instance Persist Log Helper
+		let hlpMutant   = new PersistlogHelper();
+		// find Magneto Log
+		await hlpMutant.findLogMagneto()
+			.then((findResponse) => {
+				objResponse.count_mutant_dna = 1;
+				objResponse.count_human_dna  = 1;
+				objResponse.ratio = 0;
+			})
+			.catch((error) => {
+				console.log("error listStats: ", error);
+			});
 		// default Return
 		return objResponse;
 	}

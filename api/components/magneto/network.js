@@ -13,16 +13,15 @@ router.post('/mutant', isMutant);
 function isMutant(req, res) {
 	// validate Is Mutant
 	controller.isMutant(req.body)
-		.then((response) => {
-			//console.log("response: ", response);
-			if (response.isMutant) {
-				response.success(req, res, response, 200);
+		.then((rspPromise) => {
+			if (rspPromise.isMutant) {
+				response.success(req, res, rspPromise, 200);
 			} else {
-				response.success(req, res, response, 403);				
+				response.success(req, res, rspPromise, 403);				
 			} 
 		})
 		.catch((err) => {
-			console.log("err: ", err);
+			// console.log("err: ", err);
 			response.error(req, res, err.message, 500);
 		});
 }
