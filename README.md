@@ -17,12 +17,18 @@ La URL base de acceso, al servicio en cloud computing es:
 - npm install
 - nodemon api/index.js
 
-
-## funcionamiento API
+## análisis problema
 
 <img src="/api/components/magneto/assets/images/analisis.JPG" alt="Análisis solución Magneto Mutants"/>
 
-Desde la url publicada, o postman, o cualquier cliente de servicios rest (independiente del lenguage), se puede acceder a los siguientes servicios de la API:
+Se buscó una forma de llegar a identificar si el usuario era o no mutante, basado en las condiciones y/o especificaciones del requerimiento. Inicialmente se pensó, en realizar recorridos verticales, horizontales, y diagonales de izquierda a derecha y de derecha a Izquierda, pero este proceso exigía bastantes líneas de código, se corria el riesgo de que se quedaran casos sin resolver y adicional a lo anterior, en la mayoría de los casos se tendrían que realizar muchas iteraciones.
+
+Revisando otras posibles soluciones, se identificó que cada celda de la matriz puede hacer parte de un segmento válido "4 letras iguales", en máximo 8 direcciones posibles (como se ve en la imagen), lo que implica que es viable que analizando únicamente la celda inicial, o las primeras celdas de la matriz, podríamos llegar a identificar los 2 segmentos solicitados dismunuyendo así, la cantidad de procesos a realizar en cada solicitud.
+ 
+
+## funcionamiento API
+
+Desde la url publicada, postman o cualquier cliente de servicios rest (independiente del lenguage), se puede acceder a los siguientes servicios de la API:
 
 **- MUTANT**
 * method: POST
