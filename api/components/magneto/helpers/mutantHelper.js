@@ -1,5 +1,3 @@
-// sample Request: { “dna”:["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"] }
-
 class MutantHelper {
 	// default Vars
 	secQuantity   = 0;
@@ -9,6 +7,9 @@ class MutantHelper {
 
 	/**
 	* verify Is Mutant
+	* valida formato Request y en caso de ser correcto lo analiza para validar si es o no un mutante
+    * sample Request: { “dna”:["ATGCGA","CAGTGC","TTATGT","AGAAGG","CCCCTA","TCACTG"] }
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	async verifyIsMutant(objRequest) {
 		// set Default Object Response
@@ -43,6 +44,8 @@ class MutantHelper {
 
 	/**
 	* validate Request Json
+    * permite validar que el request tenga el formato correcto y sea una matriz de N x N
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	async validateRequestJson(objRequest) {
 		// default Var
@@ -73,6 +76,8 @@ class MutantHelper {
 
 	/**
 	* validate Horizontal Items
+    * Permite iterar las columnas de cada fila de la matriz
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	async validateItemSequence(arrItems) {
 		// set me
@@ -99,12 +104,15 @@ class MutantHelper {
 
 	/**
 	* sequences Verify Actual Item
+    * Por cada celda de la matriz realiza la validación de las 8 combinaciones posibles en las que esta puede dar positivo para mutante
+    * Se realiza de esta manera para minimizar el numero de iteraciones requeridas para su validación y para grarantizar que se validen todas las opciones posibles
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	sequencesVerifyActualItem(arrItems, actItem, indexX, indexY) {
 		this.mtxValidation.forEach(valValidate => {
 			// validate if is Mutant
 			if (this.secQuantity < this.qtyMutant) {
-				// validate Array Keys Exist
+				// validate Array Keys (Positions) Exist
 				if (
 					this.validateExistItemPosition(arrItems, (indexX + (valValidate[0] * 1)), (indexY + (valValidate[1]) *1)) &&
 					this.validateExistItemPosition(arrItems, (indexX + (valValidate[0] * 2)), (indexY + (valValidate[1]) *2)) &&
@@ -112,7 +120,7 @@ class MutantHelper {
 					this.validateExistItemPosition(arrItems, (indexX + (valValidate[0] * 4)), (indexY + (valValidate[1]) *4))
 				) {
 					// console.log("Ingresa a validar: ", arrItems[indexX + (valValidate[0] * 1)][indexY + (valValidate[1] * 1)]);
-					// compare Items
+					// compare Iqual Items
 					if (
 						(arrItems[indexX + (valValidate[0] * 1)][indexY + (valValidate[1] * 1)] ===
 						arrItems[indexX + (valValidate[0] * 2)][indexY + (valValidate[1] * 2)])

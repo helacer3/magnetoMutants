@@ -5,6 +5,7 @@ class PersistLogHelper {
 
   /**
   * save Log Magneto
+  * permite ingresar al documento de mongo el registro correspondiente a la validación Mutant realizada
   */
   async saveLogMagneto(strRequest, isMutant) {
     try {
@@ -22,6 +23,9 @@ class PersistLogHelper {
 
   /**
   * find Log Magneto
+  * permite calcular la cantidad de registros cuya validación arrojo si es mutante o no, 
+  * wuery realizado haciendo uso de un aggregate de MongoDB
+  * @author Snayder Acero <helacer3@yahoo.es>
   */
   async findLogMagneto() {
     try {

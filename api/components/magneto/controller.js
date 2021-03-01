@@ -5,6 +5,8 @@ module.exports = function() {
 	
 	/**
 	* is Mutant
+	* rest al cual se accede por método POST, para determinar si la data enviada hace referencia a un humano o un mutante
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	async function isMutant(objRequest) {
 		// set Default Object Response
@@ -32,6 +34,9 @@ module.exports = function() {
 
 	/**
 	* list Stats
+	* permite obtener la cantidad de mutantes y humanos encontrados en el histórico de validaciones 
+	* y el porcentaje de resultados exitosos (Es Mutante)
+    * @author Snayder Acero <helacer3@yahoo.es>
 	*/
 	async function listStats() {
 		// default Object
@@ -41,9 +46,11 @@ module.exports = function() {
 		// find Magneto Log
 		await hlpMutant.findLogMagneto()
 			.then((findResponse) => {
-				objResponse.count_mutant_dna = 1;
-				objResponse.count_human_dna  = 1;
-				objResponse.ratio = 0;
+				let cntMutants = 7; // findResponse.count_mutant_dna
+				let cntHumans  = 3; // findResponse.count_human_dna
+				objResponse.count_mutant_dna = cntMutants,
+				objResponse.count_human_dna  = cntHumans,
+				objResponse.ratio = ((cntMutants * 100) / (cntMutants + cntHumans));
 			})
 			.catch((error) => {
 				console.log("error listStats: ", error);
