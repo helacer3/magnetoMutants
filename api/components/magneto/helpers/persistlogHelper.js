@@ -24,7 +24,7 @@ class PersistLogHelper {
   /**
   * find Log Magneto
   * permite calcular la cantidad de registros cuya validación arrojo si es mutante o no, 
-  * wuery realizado haciendo uso de un aggregate de MongoDB
+  * query realizado haciendo uso de un aggregate de MongoDB
   * @author Snayder Acero <helacer3@yahoo.es>
   */
   async findLogMagneto() {
