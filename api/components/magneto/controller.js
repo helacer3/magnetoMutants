@@ -45,15 +45,19 @@ module.exports = function() {
 		let hlpMutant   = new PersistlogHelper();
 		// find Magneto Log
 		await hlpMutant.findLogMagneto()
-			.then((findResponse) => {
-				let cntMutants = 7; // findResponse.count_mutant_dna
-				let cntHumans  = 3; // findResponse.count_human_dna
+			.then((logResponse) => {
+				console.log("logResponse: ", logResponse);
+				// count Mutants
+				let cntMutants = logResponse[0].count_mutant_dna;
+				// count Humans
+				let cntHumans  = logResponse[0].count_human_dna;
+				// set Object Response
 				objResponse.count_mutant_dna = cntMutants,
 				objResponse.count_human_dna  = cntHumans,
-				objResponse.ratio = ((cntMutants * 100) / (cntMutants + cntHumans));
+				objResponse.ratio = parseInt(((cntMutants * 100) / (cntMutants + cntHumans)));
 			})
 			.catch((error) => {
-				console.log("error listStats: ", error);
+				// console.log("error listStats: ", error);
 			});
 		// default Return
 		return objResponse;

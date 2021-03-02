@@ -65,7 +65,7 @@ describe('apiTest', function() {
     });
 
     // valida Formato Respuesta GET
-    /*describe('GET', function(){
+    describe('GET', function(){
         it('Valida Formato Respuesta', function(done){
             request.get('/api/stats')
                 .expect('Content-Type', /json/)
@@ -74,7 +74,7 @@ describe('apiTest', function() {
                     done();
                 });
          });
-    });*/
+    });
 
     // valida estructura respuesta Get
     describe('GET', function(){
