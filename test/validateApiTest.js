@@ -66,14 +66,13 @@ describe('apiTest', function() {
 
     // valida Formato Respuesta GET
     describe('GET', function(){
-        it('Valida Formato Respuesta', function(done){
-            request.get('/api/stats')
-                .expect('Content-Type', /json/)
-                .expect(200, done)
-                .end((err, res) => {
-                    done();
-                });
-         });
+        it('Valida Código Respuesta Servicio GET', function(done){
+            request.get('/api/stats', function(err, response, body) {
+                response.statusCode.should.equal(200);
+            }).end((err, res) => {
+                done();
+            })
+        });
     });
 
     // valida estructura respuesta Get
