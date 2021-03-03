@@ -17,6 +17,22 @@ La URL base de acceso, al servicio en cloud computing es:
 - npm install
 - nodemon api/index.js
 
+
+## API desplegada en Google Cloud Engine
+
+La APi fue desplegada en Google Cloud Engine: 
+
+https://magnetoml.uc.r.appspot.com/api/mutant
+
+<img src="/api/components/magneto/assets/images/ValidateMutant.JPG" alt="Servicio POST Google Cloud Engine"/>
+
+La url para acceder al servicio get, que permite consultar las estádisticas del servicio es:
+
+https://magnetoml.uc.r.appspot.com/api/stats
+
+<img src="/api/components/magneto/assets/images/LogCloudEngine.JPG" alt="Servicio GET Google Cloud Engine"/>
+
+
 ## análisis problema
 
 <img src="/api/components/magneto/assets/images/analisis.JPG" alt="Análisis solución Magneto Mutants"/>
