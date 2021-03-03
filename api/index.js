@@ -9,7 +9,7 @@ const app = express();
 try {
 	let urlConnect = 'mongodb+srv://'+config.api.mongo.user+':'+config.api.mongo.password+'@clustermagneto.pqha5.mongodb.net/'+config.api.mongo.dbname+'?retryWrites=true&w=majority';
 	// realizo conexión a Mongo DB haciendo uso de la librería mongoose
-	mongoose.connect(urlConnect, {
+	mongoose.connect(process.env.MONGODB_URI, {
 		useNewUrlParser: true,
 		useUnifiedTopology: true,
 		socketTimeoutMS: 65000,
