@@ -5,35 +5,31 @@ Desarrollo realizado con el lenguaje de programación **NodeJS**
 - Para interactuar con la base de datos mongo (alojada en el servicio mongo Atlas) se hizo uso de la librería mongoose.
 - Para la creación de los test unitarios se hizo uso de mocha, complementado con supertest.
 
-
-## URL Base de Acceso
-
-La URL base de acceso, al servicio en cloud computing es: 
-
-
 ## Instalación en local
 
 - clonar Repositorio
 - npm install
-- nodemon api/index.js
+- node api/index.js
 
 
 ## API desplegada en Google Cloud Engine
 
 La APi fue desplegada en Google Cloud Engine: 
 
+#La url de acceso al servicio post, para realizar la validación de las secuencias:
+
 https://magnetoml.uc.r.appspot.com/api/mutant
 
-<img src="/api/components/magneto/assets/images/ValidateMutant.JPG" alt="Servicio POST Google Cloud Engine"/>
+<img src="/api/components/magneto/assets/images/validateMutant.JPG" alt="Servicio POST Google Cloud Engine"/>
 
-La url para acceder al servicio get, que permite consultar las estádisticas del servicio es:
+#La url para acceder al servicio get, que permite consultar las estádisticas del servicio es:
 
 https://magnetoml.uc.r.appspot.com/api/stats
 
 <img src="/api/components/magneto/assets/images/LogCloudEngine.JPG" alt="Servicio GET Google Cloud Engine"/>
 
 
-## análisis problema
+## Análisis problema
 
 <img src="/api/components/magneto/assets/images/analisis.JPG" alt="Análisis solución Magneto Mutants"/>
 
